@@ -1,9 +1,9 @@
 <template>
     <!-- Nav Menu -->
-    <div id="nav">
+    <!-- <div id="nav">
         <router-link to="/">Home</router-link> |
         <router-link to="/about">About</router-link>
-    </div>
+    </div> -->
     <!-- Component Load -->
     <router-view/>
 </template>
