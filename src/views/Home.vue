@@ -22,25 +22,27 @@
             </div>
 
             <div class="section">
-                <div class='row'>
-                    <input type="number" id="quantity" name="quantity" min="1" max="5" />
-                    <p>Paragraphs</p>
-                </div>
-                <div class='row'>
-                    <input type="radio" id="radioLong" />
-                    <p>Long</p>
-                    <input type="radio" id="radioMedium" />
-                    <p>Medium</p>
-                    <input type="radio" id="radioShort" />
-                    <p>Short</p>
-                </div>
-                <div class='row'>
-                    <input type="checkbox" id='checkOne' />
-                    <p>This is option "one"</p>
-                </div>
-                <div class='row'>
-                    <input type="checkbox" id='checkTwo' />
-                    <p>This is option "two"</p>
+                <div class='options'>
+                    <div class='row'>
+                        <input type="number" id="quantity" name="quantity" min="1" max="5" />
+                        <p>Paragraphs</p>
+                    </div>
+                    <div class='row'>
+                        <input type="radio" id="radioLong" />
+                        <p>Long</p>
+                        <input type="radio" id="radioMedium" />
+                        <p>Medium</p>
+                        <input type="radio" id="radioShort" />
+                        <p>Short</p>
+                    </div>
+                    <div class='row'>
+                        <input type="checkbox" id='checkOne' />
+                        <p>This is option "one"</p>
+                    </div>
+                    <div class='row'>
+                        <input type="checkbox" id='checkTwo' />
+                        <p>This is option "two"</p>
+                    </div>
                 </div>
             </div>
 
@@ -105,6 +107,11 @@
         margin: 25px;
     }
 
+    .options {
+        margin: auto;
+        width: 50%;
+    }
+
     .gutter {
         grid-area: gutter;
         background-color: red;
@@ -116,7 +123,6 @@
 
     .row {
         display: flex;
-        justify-content: center;
         align-items: baseline;
 
         > * {
@@ -135,6 +141,7 @@
         border-width: 0;
         border-radius: 2px;
         box-shadow: 0 1px 4px rgba(0, 0, 0, .6);
+        width: 250px;
 
         transition: background-color .3s;
 
