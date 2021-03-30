@@ -10,11 +10,11 @@
             <div class="gutter2">gutter</div>
 
             <div class="section">
-                <h1 class="primary-font">
+                <h2 class="primary-font">
                     This is our large header
                     <br />
                     Text? Don’t you love it?
-                </h1>
+                </h2>
                 <h4 class="secondary-font">
                     I know Right?
                     It's mamash the best...
@@ -70,6 +70,8 @@
     .home {
         background-color: #3c78d8ff;
         color: white;
+        font-family: 'Akaya Kanadaka', cursive;
+        font-size: 1.5em;
     }
     .primary-font {
         color: #ffd966;
@@ -83,8 +85,24 @@
         grid-template-areas: "gutter main gutter2";
     }
 
+    h1 {
+        font-size: 4em;
+        margin: 10px;
+    }
+
+    h2 {
+        font-size: 3em;
+        margin: 10px;
+    }
+
+    h4 {
+        font-size: 1.5em;
+        margin: 10px;
+    }
+
     .section {
         grid-column-start: main;
+        margin: 25px;
     }
 
     .gutter {
@@ -131,6 +149,9 @@
         span {
             display: block;
             padding: 12px 24px;
+            color: white;
+            font-size: 1.5em;
+            font-family: 'Akaya Kanadaka', cursive;
         }
 
         :before {
