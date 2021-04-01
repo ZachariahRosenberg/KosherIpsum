@@ -11,7 +11,6 @@
                 min="1" 
                 max="5" 
                 v-model="ipsumNumParagraphs"
-                @change="validateNumParagraphs"
             />
             <p>Paragraphs</p>
         </div>
@@ -39,61 +38,97 @@
             <p>Short</p>
         </div>
         <div class='row'>
-            <input type="checkbox" id='checkOne' />
-            <p>This is option "one"</p>
+            <input type="checkbox" id='checkOutputExcludeIpsum' v-model="outputExcludeIpsum" />
+            <p>Nein Ipsum, Just the Yiddish.</p>
         </div>
         <div class='row'>
-            <input type="checkbox" id='checkTwo' />
-            <p>This is option "two"</p>
+            <input type="checkbox" id='checkOutputStartWithOy' v-model="outputStartWithOy" />
+            <p>Start with "Oy Gevalt"</p>
         </div>
     </div>
 
-    <button type="button" @click="setOutputText">
-        <span>Generate</span>
+    <button type="button" @click="fetchIpsum">
+        <span v-if="isLoading">Loading</span>
+        <span v-else>Generate</span>
     </button>
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex';
+
 export default {
     name: 'IpsumOptions',
+
     methods: {
-        setOutputText: function(){
-            this.$emit('set-output-text', this.ipsumText);
-        },
-
-        setIpsumLength: function(length){
-            if(length in ['s', 'm', 'l']){
-                this.ipsumLength = length;
-            }
-        },
-
-        validateNumParagraphs: function(){
+        validateNumParagraphs: function(number){
             this.errorMessage = "";
             this.showError = false;
-
-            if(this.ipsumNumParagraphs > 5){
-                this.ipsumNumParagraphs = 5;
+    
+            if(number > 5){
                 this.errorMessage = 'Maximum number of paragraphs is 5';
                 this.showError = true
+                return false;
             }
-            else if(this.ipsumNumParagraphs < 1){
-                this.ipsumNumParagraphs = 1;
+            else if(number < 1 || number == ''){
                 this.errorMessage = 'Minimum number of paragraphs is 1';
                 this.showError = true
+                return false;
             }
-        }
+            return true;
+        },
+
+        ...mapActions(['fetchIpsum'])
     },
+
     data(){
         return {
-            ipsumText         : "",
-            ipsumLength       : "s",
-            ipsumNumParagraphs: 3,
-            ipsumOptionOne    : false,
-            ipsumOptionTwo    : false,
-            errorMessage      : "",
-            showError         : false
+            errorMessage : "",
+            showError    : false
         }
+    },
+
+    computed: {
+        ipsumLength: {
+            get(){
+                return this.$store.state.ipsumLength;
+            },
+            set(value){
+                this.$store.commit('setIpsumLength', value);
+            }
+        },
+        ipsumNumParagraphs: {
+            get(){
+                return this.$store.state.ipsumNumParagraphs;
+            },
+            set(value){
+                if(this.validateNumParagraphs(value)){
+                    this.$store.commit('setIpsumNumParagraphs', value);
+                }
+                else{
+                    value = value > 5? 5:1;
+                    this.$store.commit('setIpsumNumParagraphs', value);
+                }
+            }
+        },
+        outputExcludeIpsum: {
+            get(){
+                return this.$store.state.outputExcludeIpsum;
+            },
+            set(value){
+                this.$store.commit('setOutputExcludeIpsum', value);
+            }
+        },
+        outputStartWithOy: {
+            get(){
+                return this.$store.state.outputStartWithOy;
+            },
+            set(value){
+                this.$store.commit('setOutputStartWithOy', value);
+            }
+        },
+        ...mapState(['isLoading'])
     }
+
 }
 </script>
 

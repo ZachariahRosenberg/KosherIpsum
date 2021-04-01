@@ -21,11 +21,11 @@
 
             <!-- Options -->
             <div class="section">
-                <IpsumOptions @set-output-text='setOutputText' />
+                <IpsumOptions />
             </div>
 
             <!-- GENERATE TEXT -->
-            <div class='section' v-if="showOutput">
+            <div class='section' v-if="showIpsumText">
                 <ipsum-output></ipsum-output>
             </div>
 
@@ -38,6 +38,8 @@
     import IpsumOptions from '@/components/IpsumOptions';
     import IpsumOutput  from '@/components/IpsumOutput';
 
+    import { mapState } from 'vuex';
+
     export default {
         name: 'Home',
 
@@ -46,23 +48,9 @@
             IpsumOutput
         },
 
-        methods: {
-            setOutputText(text){
-                this.outputText = text;
-                this.showOutput = true;
-            }
-        },
-
-        data() {
-            return {
-                showOutput: false,
-                outputText: ""
-            }
-        },
-
-        computed: {
-
-        }
+        computed: mapState([
+            'showIpsumText'
+        ])
     }
 </script>
 
