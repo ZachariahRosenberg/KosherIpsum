@@ -2,12 +2,10 @@
     <div class="home">
         <div class="container">
             <!-- TITLE -->
-            <div class="gutter">gutter</div>
             <div class="section">
                 <h1 class="primary-font">Kosher Ipsum</h1>
                 <h4 class="secondary-font">This is our subtitle!</h4>
             </div>
-            <div class="gutter2">gutter</div>
 
             <!-- Catchline -->
             <div class="section">
