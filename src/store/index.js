@@ -27,11 +27,17 @@ export default createStore({
         }
     },
     actions: {
-        async fetchIpsum({ commit }){
+        async fetchIpsum({ commit, state }){
             // Any more commits and we should group into a mutation
             commit('resetIpsumText');
             commit('setIsLoading', true);
-            let ipsumParagraphs = await fetchIpsum();
+
+            let ipsumParagraphs = await fetchIpsum(
+                state.ipsumNumParagraphs, 
+                state.ipsumLength, 
+                state.excludeIpsum, 
+                state.startWithOy
+            );
             commit('setIpsumText', ipsumParagraphs);
             commit('setShowIpsumText', true);
             commit('setIsLoading', false);
