@@ -45,16 +45,6 @@ const mock_ipsum_text = [
 
 
 export function fetchIpsum(ipsumNumParagraphs=3, ipsumLength='s', excludeIpsum=false, startWithOy=true){
-    // let todoUrl = `https://jsonplaceholder.typicode.com/todos?_limit=${todoLimit}`;
-
-    // return new Promise((resolve, reject)=>{
-    //     setTimeout(()=>{
-    //         fetch(todoUrl)
-    //             .then(response => response.json())
-    //             .then(json=>resolve(json))
-    //             .catch(error=>reject(error))
-    //     }, 3000)
-    // })
 
     return new Promise((resolve, reject)=>{
         setTimeout(()=>{
@@ -82,6 +72,6 @@ export function fetchIpsum(ipsumNumParagraphs=3, ipsumLength='s', excludeIpsum=f
             catch(error){
                 reject(error);
             }
-        }, 1000)
+        }, 500)
     })
 }
