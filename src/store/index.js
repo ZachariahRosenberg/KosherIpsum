@@ -38,6 +38,7 @@ export default createStore({
                 state.excludeIpsum, 
                 state.startWithOy
             );
+
             commit('setIpsumText', ipsumParagraphs);
             commit('setShowIpsumText', true);
             commit('setIsLoading', false);
