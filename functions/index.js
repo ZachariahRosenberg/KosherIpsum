@@ -252,6 +252,8 @@ exports.generateIpsum = functions.https.onRequest(async (req, res)=>{
         paragraphs[0] = 'Oy Gevalt! ' + paragraphs[0];
     }
 
+
+    res.set('Access-Control-Allow-Origin', '*');
     res.json({
         result: paragraphs
     })
