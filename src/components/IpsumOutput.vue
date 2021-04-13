@@ -5,8 +5,9 @@
         </p>
     </div>
 
-    <button type="button">
-        <span>Copy to Clipboard</span>
+    <button type="button" @click="copyToClipboard">
+        <span v-if='copiedToClipboard'>Copied!</span>
+        <span v-else>Copy to Clipboard</span>
     </button>
 </template>
 
@@ -15,8 +16,21 @@ import { mapState } from 'vuex';
 
 export default {
     name: 'IpsumOutput',
-
-    computed: mapState(['ipsumText'])
+    data: function(){
+        return {
+            copiedToClipboard: false
+        }
+    },
+    computed: mapState(['ipsumText']),
+    methods:{
+        copyToClipboard: function(event){
+            navigator.clipboard.writeText(this.ipsumText);
+            this.copiedToClipboard = true;
+            setTimeout(()=>{
+                this.copiedToClipboard = false;
+            }, 5000);
+        }
+    }
 }
 </script>
 
